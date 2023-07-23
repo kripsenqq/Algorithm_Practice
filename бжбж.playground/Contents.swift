@@ -1,169 +1,257 @@
 import Foundation
-//
-//func great(_ name: String, _ owner: String) -> String {
-//
-//    if name == owner {
-//        return "Hello boss"
-//    } else if name != owner {
-//        return "Hello guest"
-//    } else {
-//        return ("Invalid input")
-//    }
-//}
-//
-//great("Nikita", "Nikita")
-//
-//
-//
-//func sumOfPositives (_ array: [Int] ) -> Int {
-//
-//    var sum = 0;
-//
-//    for number in array{
-//        if number > 0{
-//            sum += number
-//        }
-//    }
-//
-//    return sum;
-//}
-//
-//sumOfPositives([5,-12,7,-9,-6,45,7,-345])
-//
-//
-//
-//
-//func sumMix(_ arr: [Any]) -> Int {
-//    var sum = 0
-//
-//    for firstEteration in arr {
-//
-//        if let secondEteration = firstEteration as? String {
-//
-//            if let thirdEtaration = Int(secondEteration) {
-//                sum += thirdEtaration
-//            }
-//
-//        }else if let fourEteration = firstEteration as? Int {
-//            sum += fourEteration
-//        }
-//
-//    }
-//
-//    return sum
-//}
-//
-//
-//sumMix([1,456,"2352",475,987,123,34,2, "436",])
-//
-//
-//
-//
-//func switchItUp(_ number: Int) -> String {
-//
-//    let oneN = "One"
-//    let twoN = "Two"
-//    let threeN = "Three"
-//    let fourN = "Four"
-//    let fiveN = "Five"
-//    let sixN = "Six"
-//    let sevenN = "Seven"
-//    let eightN = "Eight"
-//    let nineN = "Nine"
-//    let zeroN = "Zero"
-//
-//    switch number {
-//    case 1:
-//        return oneN
-//    case 2:
-//        return twoN
-//    case 3:
-//        return threeN
-//    case 4:
-//        return fourN
-//    case 5:
-//        return fiveN
-//    case 6:
-//        return sixN
-//    case 7:
-//        return sevenN
-//    case 8:
-//        return eightN
-//    case 9:
-//        return nineN
-//    case 0:
-//        return zeroN
-//    default:
-//        return("Invalid error")
-//    }
-//}
-//
-//switchItUp(2)
-//
-//
-//
-//
-//
-//func squareSum(_ vals: [Int]) -> Int {
-//  var sum = 0
-//
-//  for i in vals{
-//    let sukk = i * i
-//    sum += sukk
-//
-//  }
-//
-//  return sum
-//}
-//
-//squareSum([1, 2, 3])
-//
-//
-//func summation(_ n: Int) -> Int {
-//  var sum = 0
-//
-//  for i in 0...n {
-//    sum += i
-//  }
-//
-//  return sum
-//}
-//
-//
-//
-//func update_light(_ current: String) -> String {
-//  var grCol = "green"
-//  var yeCol = "yellow"
-//  var reCol = "red"
-//
-//    switch current {
-//    case grCol:
-//        return yeCol
-//    case yeCol:
-//        return reCol
-//    case reCol:
-//        return grCol
-//    default:
-//        return "Invalid input"
-//    }
-//
-//}
-//
-//update_light("yellow")
-//
-//
-//func otherAngle(a: Int, b: Int) -> Int {
-//
-//  var c = 0
-//
-//  c = 180 - (a + b)
-//
-//  return c
-//}
+
+//#1
+//В заданном массиве сложить два наименьших значения и вывести, игнорируя отрицательные числа и числа с плав. запятой
+func sumOfTwoSmallestIntegersIn(_ array: [Int]) -> Int {
+    var workArr = array
+    var arrCount = workArr.count
+
+    
+    for i in 0..<arrCount {
+        for j in 0..<arrCount-i-1 {
+            if workArr[j] > workArr[j+1] {
+                workArr.swapAt(j, j+1)
+            }
+        }
+    }
+    return workArr[0] + workArr[1]
+}
 
 
+//-----------------------------------------------------------------------------------------------------------------------------
 
 
+//#2
+class WorkBook {
+    //Условие: есть тест(текст) состояищй из определенного кол-ва слов и этот тест нужно распределить в какое то количество тетрадей, в каждой из которой 12 страниц. Мы должны иметь возможность быстро вычислить кол-во требуемых тетрадей для текста.
+    class var maxPages: Int { return 12 }
+    //количество слов в тексте
+    var text: Int
+    //количество слов на странице
+    var wordsOnPage: Int
+
+    //деление кол-ва слов в тексте на кол-во слов на странице
+    var pages: (Int, Int) {
+        let pageCount = text / wordsOnPage
+        let remainder = text % wordsOnPage
+        return (pageCount, remainder)
+    }
+
+    var calcWorkBookQuantity: Int {
+        if pages.1 != 0{
+            return pages.0 + Int(ceil(Double(pages.1)))
+        } else {
+            return pages.0
+        }
+
+    }
+
+    lazy var fffEb: () = randomZalup()
+
+    func randomZalup() {
+        print("WTF man, why you did this")
+    }
+
+    init(text: Int, wordsOnPage: Int) {
+        self.text = text
+        self.wordsOnPage = wordsOnPage
+    }
+}
+
+ let TestEngOne = WorkBook(text: 421, wordsOnPage: 60)
+TestEngOne.calcWorkBookQuantity
+TestEngOne.fffEb
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#3
+func great(_ name: String, _ owner: String) -> String {
+
+    if name == owner {
+        return "Hello boss"
+    } else if name != owner {
+        return "Hello guest"
+    } else {
+        return ("Invalid input")
+    }
+}
+
+great("Nikita", "Nikita")
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#4
+func sumOfPositives (_ array: [Int] ) -> Int {
+
+    var sum = 0;
+
+    for number in array{
+        if number > 0{
+            sum += number
+        }
+    }
+
+    return sum;
+}
+
+sumOfPositives([5,-12,7,-9,-6,45,7,-345])
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#5
+func sumMix(_ arr: [Any]) -> Int {
+    var sum = 0
+
+    for firstEteration in arr {
+
+        if let secondEteration = firstEteration as? String {
+
+            if let thirdEtaration = Int(secondEteration) {
+                sum += thirdEtaration
+            }
+
+        }else if let fourEteration = firstEteration as? Int {
+            sum += fourEteration
+        }
+
+    }
+
+    return sum
+}
+
+
+sumMix([1,456,"2352",475,987,123,34,2, "436",])
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#6
+func switchItUp(_ number: Int) -> String {
+
+    let oneN = "One"
+    let twoN = "Two"
+    let threeN = "Three"
+    let fourN = "Four"
+    let fiveN = "Five"
+    let sixN = "Six"
+    let sevenN = "Seven"
+    let eightN = "Eight"
+    let nineN = "Nine"
+    let zeroN = "Zero"
+
+    switch number {
+    case 1:
+        return oneN
+    case 2:
+        return twoN
+    case 3:
+        return threeN
+    case 4:
+        return fourN
+    case 5:
+        return fiveN
+    case 6:
+        return sixN
+    case 7:
+        return sevenN
+    case 8:
+        return eightN
+    case 9:
+        return nineN
+    case 0:
+        return zeroN
+    default:
+        return("Invalid error")
+    }
+}
+
+switchItUp(2)
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#7
+func squareSum(_ vals: [Int]) -> Int {
+  var sum = 0
+
+  for i in vals{
+    let sukk = i * i
+    sum += sukk
+
+  }
+
+  return sum
+}
+
+squareSum([1, 2, 3])
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#8
+func summation(_ n: Int) -> Int {
+  var sum = 0
+
+  for i in 0...n {
+    sum += i
+  }
+
+  return sum
+}
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#9
+func update_light(_ current: String) -> String {
+  var grCol = "green"
+  var yeCol = "yellow"
+  var reCol = "red"
+
+    switch current {
+    case grCol:
+        return yeCol
+    case yeCol:
+        return reCol
+    case reCol:
+        return grCol
+    default:
+        return "Invalid input"
+    }
+
+}
+
+update_light("yellow")
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#10
+func otherAngle(a: Int, b: Int) -> Int {
+
+  var c = 0
+
+  c = 180 - (a + b)
+
+  return c
+}
+
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+
+//#11
 class Student {
     //Это свойства класса Student
     var name : String
@@ -220,44 +308,6 @@ var newArrayM = arrayM.sorted(by: >)
 Mikey.fullname
 
 
+//-----------------------------------------------------------------------------------------------------------------------------
 
 
-class WorkBook {
-    //Условие: есть тест(текст) состояищй из определенного кол-ва слов и этот тест нужно распределить в какое то количество тетрадей, в каждой из которой 12 страниц. Мы должны иметь возможность быстро вычислить кол-во требуемых тетрадей для текста.
-    class var maxPages: Int { return 12 }
-    //количество слов в тексте
-    var text: Int
-    //количество слов на странице
-    var wordsOnPage: Int
-    
-    //деление кол-ва слов в тексте на кол-во слов на странице
-    var pages: (Int, Int) {
-        let pageCount = text / wordsOnPage
-        let remainder = text % wordsOnPage
-        return (pageCount, remainder)
-    }
-    
-    var calcWorkBookQuantity: Int {
-        if pages.1 != 0{
-            return pages.0 + Int(ceil(Double(pages.1)))
-        } else {
-            return pages.0
-        }
-        
-    }
-    
-    lazy var fffEb: () = randomZalup()
-    
-    func randomZalup() {
-        print("WTF man, why you did this")
-    }
-    
-    init(text: Int, wordsOnPage: Int) {
-        self.text = text
-        self.wordsOnPage = wordsOnPage
-    }
-}
-
- let TestEngOne = WorkBook(text: 421, wordsOnPage: 60)
-TestEngOne.calcWorkBookQuantity
-TestEngOne.fffEb
